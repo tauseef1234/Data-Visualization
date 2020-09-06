@@ -245,7 +245,7 @@ geosource.selected.on_change('indices', function_geosource)
 
 
 
-# Layout the components with the plot in row postion (0) and the other components in a column in row position (1)
+# Layout the components with the plot
 layout = row(p,data_table,p2)
                              
 # Add the layout to the current document
