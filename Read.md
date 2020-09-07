@@ -1,4 +1,4 @@
-<center><h1><font color = '#EC9C45' Chicago crime data - Interactive Dashboard </font></h1></center>
+<center><h1><font color = '#EC9C45'> Chicago crime data - Interactive Dashboard </font></h1></center>
 
 This interactive dashboard maps the city of Chicago by offence count for the year 2019. The dashboard shows a choropleth map of the city of Chicago that hads counties color coded by the offence count, a datatable and a horizontal bar chart of the offence types.
 
