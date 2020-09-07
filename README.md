@@ -10,8 +10,8 @@ The source data for this dashboard is extracted from [Google cloud public datase
 Data Extraction - Python library bigquery was used to extract data from Google cloud. The steps to create Google API credentials can be figured out using this [webpage](https://console.cloud.google.com/apis/credentials). The following code snippet was run to fetch the data.
 
 ```python
-pip install --upgrade google-cloud-bigquery        # install library
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=r"C:\Users\*******.json"   # replace the file name by your own google API credentials
+pip install --upgrade google-cloud-bigquery        # Install library
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=r"C:\Users\*******.json"   # Replace the file name by your own google API credentials
 client = bigquery.Client()          # Start the BigQuery Client
 QUERY = ('SELECT * FROM `bigquery-public-data.chicago_crime.crime`')              # Input Query Syntax
 query_job = client.query(QUERY)     # Start Query API Request
@@ -20,9 +20,9 @@ df = query_result.to_dataframe()    # Save the Query to Dataframe
 ```
 The pickle file `chicago_crime.pkl` is generated from the df dataframe using the above code snippet
 
-**Google cloud stores data from 2001 till 2019 but for this dashboard uses data for year 2019 only.**
+**Google cloud stores data from 2001 till 2019 but this dashboard uses data for year 2019 only.**
 
-The `Boundaries.geojson` json file is extracted from the [Chicago city website](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9)
+The `Boundaries.geojson` (mapping data) json file is extracted from the [Chicago city website](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9)
 
 ## Dashboard
 
