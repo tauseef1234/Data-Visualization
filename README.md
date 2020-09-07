@@ -18,8 +18,11 @@ query_job = client.query(QUERY)     # Start Query API Request
 query_result = query_job.result()   # Get Query Result
 df = query_result.to_dataframe()    # Save the Query to Dataframe
 ```
+The pickle file `chicago_crime.pkl` is generated from the df dataframe using the above code snippet
 
 **Google cloud stores data from 2001 till 2019 but for this dashboard uses data for year 2019 only.**
+
+The `Boundaries.geojson` json file is extracted from the [Chicago city website](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9)
 
 ## Dashboard
 
