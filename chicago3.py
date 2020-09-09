@@ -250,5 +250,4 @@ layout = row(p,data_table,p2)
                              
 # Add the layout to the current document
 curdoc().add_root(layout)
-curdoc().theme='dark_minimal'                                  
-                              
+curdoc().theme='dark_minimal'                    
