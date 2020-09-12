@@ -166,7 +166,7 @@ def function_source(attr, old, new):
   layout.children[0] = p
   
 
-# On change of geosource (neighborhood selection by mouse-click) fill the datatable with nieghborhood sales     
+# On change of geosource (neighborhood selection by mouse-click) fill the datatable with the count by offence type in the neighborbood    
 def function_geosource(attr, old, new):
     try:
         selected_index = geosource.selected.indices[0]
