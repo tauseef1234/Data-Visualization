@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 import geopandas
-import json
+import re, json, requests
 from google.cloud import bigquery
 
 from bokeh.io import output_notebook, show, output_file
@@ -32,7 +32,7 @@ df1 = pd.DataFrame(cg_2019.groupby(['community_area','primary_type'])['case_numb
 agg_data=pd.pivot_table(cg_2019[['community_area','description']],index=["community_area"], aggfunc='count').reset_index()
 
 # Read the geojson map file for city of Chicago
-cg = geopandas.read_file(r'C:\Users\Tauseef\Downloads\Boundaries.geojson')
+cg = geopandas.read_file('https://raw.githubusercontent.com/tauseef1234/Data-Visualization/master/data/Boundaries.geojson')
 
 # Set the Coordinate Referance System (crs) for projections
 # ESPG code 4326 is also referred to as WGS84 lat-long projection
