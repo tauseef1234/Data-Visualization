@@ -46,7 +46,7 @@ json_data = json.dumps(merged_json)
 # Create a plotting function
 def make_plot():
   
-  # Use LinearColorMapper that linearly maps a range of numbers into a sequence of colors.
+  # Use LinearColorMapper that linearly maps a range of numbers into a sequence of colors
   color_mapper = LinearColorMapper(palette = palette, low = min(agg_data['description']), high = max(agg_data['description']))
 
   # Create color bar.
@@ -131,13 +131,13 @@ def function_source(attr, old, new):
     merged_json1 = json.loads(merged_df1.to_json())
     json_data1 = json.dumps(merged_json1)
 
-    # Input geojson source that contains features for plotting for:
+    # Input geojson source that contains features for plotting for
     geosource1 = GeoJSONDataSource(geojson = json_data1)
     
     # Use LinearColorMapper that linearly maps a range of numbers into a sequence of colors.
     color_mapper = LinearColorMapper(palette = palette, low = min(subset['case_number']), high = max(subset['case_number']))
   
-    # Create color bar.
+    # Create color bar
     format_tick = NumeralTickFormatter(format='0,0')
     color_bar = ColorBar(color_mapper=color_mapper, label_standoff=18, formatter=format_tick,
                        border_line_color=None, location = (0, 0))
@@ -146,7 +146,7 @@ def function_source(attr, old, new):
     p = figure(title = ' Offence by Neighborhood in Chicago 2019 - {}'.format(crime_type), 
              plot_height = 650, plot_width = 650, toolbar_location = None)
   
-    # Add patch renderer to figure. 
+    # Add patch renderer to figure 
     p.patches('xs','ys', source = geosource1, fill_color = {'field' : 'case_number', 'transform' : color_mapper},
           line_color = 'grey', line_width = 0.25, fill_alpha = 1)
     
