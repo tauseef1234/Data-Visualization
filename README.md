@@ -34,4 +34,4 @@ The dashboard has three key components
 
 ## How the dashboard works
 
-When clicked on a county on the geomap, the datatable and horizontal bar chart get refreshed with the offence count by that county.When clicked on an offence type on datatable, the geomap gets resfreshed with the offence count by the offence type clicked on the data table. The dashboard is developed using Python interactive data visualization library __bokeh__.
+When clicked on a county on the geomap, the datatable and horizontal bar chart get refreshed with the offence count by that county. When clicked on an offence type on datatable, the geomap gets resfreshed with the offence count by the offence type clicked on the data table. The dashboard is developed using Python interactive data visualization library __bokeh__.
