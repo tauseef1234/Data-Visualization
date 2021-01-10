@@ -19,27 +19,21 @@ from bokeh.models.widgets import TextInput,DateFormatter
 
 # Prepare initial data
 
-# crime_df = pd.read_pickle(r'C:\Users\Tauseef\Downloads\chicago_crime.pkl')
+# crime_df = pd.read_pickle(r'C:\Users\Downloads\chicago_crime.pkl')
 # temp = crime_df.loc[(~crime_df['latitude'].isnull()) | (~crime_df['longitude'].isnull())].copy()
 # cg_2019 = temp.loc[temp['year']==2019].copy()
 
-# read 2019 chicago crime data
+# Read 2019 chicago crime data
 cg_2019 = pickle.load(urllib.request.urlopen("https://github.com/tauseef1234/Data-Visualization/blob/master/data/chicago_2019.pkl?raw=true"))
 cg_2019['community_area'] = cg_2019['community_area'].astype('int').astype('str')
 
-# aggregated crime data by community and primary type
+# Aggregated crime data by community and primary type
 df1 = pd.DataFrame(cg_2019.groupby(['community_area','primary_type'])['case_number'].count()).reset_index()
 
 agg_data=pd.pivot_table(cg_2019[['community_area','description']],index=["community_area"], aggfunc='count').reset_index()
 
 # Read the geojson map file for city of Chicago
 cg = geopandas.read_file('https://raw.githubusercontent.com/tauseef1234/Data-Visualization/master/data/Boundaries.geojson')
-
-# Set the Coordinate Referance System (crs) for projections
-# ESPG code 4326 is also referred to as WGS84 lat-long projection
-cg.crs = {'init': 'epsg:4326'}
-# Rename columns in geojson map file
-#cg_ = cg.rename(columns={'geometry': 'geometry'}).set_geometry('geometry')
 
 # Merge geojson map file with community level aggregated crime data
 merged_df = cg.merge(agg_data, how = 'left', right_on='community_area', left_on='area_num_1')
@@ -82,6 +76,8 @@ def make_plot():
   
   return p
 
+
+# Define styling attributes
 def style(p):
     #grid
     p.xgrid.grid_line_color = None
@@ -123,48 +119,51 @@ def style(p):
 
 # On change of source (datatable selection by mouse-click) fill the line items with values by property address
 def function_source(attr, old, new):
-  selected_index = source.selected.indices[0]
-  crime_type = df2.iloc[selected_index]['primary_type']
-  subset = df2.loc[df2['primary_type']==crime_type]
-  # Merge geojson map file with community level aggregated crime data
-  merged_df1 = cg.merge(subset, how = 'left', right_on='community_area', left_on='area_num_1')
-
-  # Bokeh uses geojson formatting, representing geographical features, with json
-  # Convert to json
-  merged_json1 = json.loads(merged_df1.to_json())
-  json_data1 = json.dumps(merged_json1)
-
-  # Input geojson source that contains features for plotting for:
-  geosource1 = GeoJSONDataSource(geojson = json_data1)
+    selected_index = source.selected.indices[0]
+    crime_type = df2.iloc[selected_index]['primary_type']
+    subset = df2.loc[df2['primary_type']==crime_type]
     
-  # Use LinearColorMapper that linearly maps a range of numbers into a sequence of colors.
-  color_mapper = LinearColorMapper(palette = palette, low = min(subset['case_number']), high = max(subset['case_number']))
-  
-  # Create color bar.
-  format_tick = NumeralTickFormatter(format='0,0')
-  color_bar = ColorBar(color_mapper=color_mapper, label_standoff=18, formatter=format_tick,
-                       border_line_color=None, location = (0, 0))
-  color_bar.major_label_text_font_size='8pt'
+    # Merge geojson map file with community level aggregated crime data
+    merged_df1 = cg.merge(subset, how = 'left', right_on='community_area', left_on='area_num_1')
 
-  p = figure(title = ' Offence by Neighborhood in Chicago 2019 - {}'.format(crime_type), 
+    # Bokeh uses geojson formatting, representing geographical features, with json
+    # Convert to json
+    merged_json1 = json.loads(merged_df1.to_json())
+    json_data1 = json.dumps(merged_json1)
+
+    # Input geojson source that contains features for plotting for:
+    geosource1 = GeoJSONDataSource(geojson = json_data1)
+    
+    # Use LinearColorMapper that linearly maps a range of numbers into a sequence of colors.
+    color_mapper = LinearColorMapper(palette = palette, low = min(subset['case_number']), high = max(subset['case_number']))
+  
+    # Create color bar.
+    format_tick = NumeralTickFormatter(format='0,0')
+    color_bar = ColorBar(color_mapper=color_mapper, label_standoff=18, formatter=format_tick,
+                       border_line_color=None, location = (0, 0))
+    color_bar.major_label_text_font_size='8pt'
+
+    p = figure(title = ' Offence by Neighborhood in Chicago 2019 - {}'.format(crime_type), 
              plot_height = 650, plot_width = 650, toolbar_location = None)
   
-  # Add patch renderer to figure. 
-  p.patches('xs','ys', source = geosource1, fill_color = {'field' : 'case_number', 'transform' : color_mapper},
+    # Add patch renderer to figure. 
+    p.patches('xs','ys', source = geosource1, fill_color = {'field' : 'case_number', 'transform' : color_mapper},
           line_color = 'grey', line_width = 0.25, fill_alpha = 1)
-  #Add hover tool to view neighborhood stats
-  hover = HoverTool(tooltips = [ ('community','@community'),
+    
+    #Add hover tool to view neighborhood stats
+    hover = HoverTool(tooltips = [ ('community','@community'),
                                ('community_area#', '@community_area'),
                                ('#crimes', '@case_number{,}')])
-  style(p)
-  p.axis.visible = False
-  # Specify color bar layout.
-  p.add_layout(color_bar, 'right')
+    style(p)
+    p.axis.visible = False
+    
+    # Specify color bar layout
+    p.add_layout(color_bar, 'right')
 
-  # Add the hover tool to the graph
-  p.add_tools(tap,hover)
+    # Add the hover tool to the graph
+    p.add_tools(tap,hover)
 
-  layout.children[0] = p
+    layout.children[0] = p
   
 
 # On change of geosource (neighborhood selection by mouse-click) fill the datatable with the count by offence type in the neighborbood    
@@ -225,6 +224,7 @@ p = make_plot()
 df3 = pd.DataFrame(cg_2019.groupby(['primary_type'])['case_number']\
                    .count()).reset_index().sort_values(by = ['case_number'], ascending=False )
 src3 = ColumnDataSource(df3)
+
 # Load the datatable, neighborhood, address, actual price, predicted price and difference for display
 data_table = DataTable(source = src3, columns = columns, width = 300, height = 850, editable = False)
 
@@ -243,7 +243,6 @@ source.selected.on_change('indices', function_source)
 
 # On change of geosource (neighborhood selection by mouse-click) fill the datatable with nieghborhood crime offense
 geosource.selected.on_change('indices', function_geosource)
-
 
 
 # Layout the components with the plot
