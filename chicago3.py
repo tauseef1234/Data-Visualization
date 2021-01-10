@@ -3,7 +3,8 @@ import os
 import pandas as pd
 import numpy as np
 import geopandas
-import re, json, requests
+import urllib.request
+import re, json, requests, pickle
 from google.cloud import bigquery
 
 from bokeh.io import output_notebook, show, output_file
@@ -23,7 +24,7 @@ from bokeh.models.widgets import TextInput,DateFormatter
 # cg_2019 = temp.loc[temp['year']==2019].copy()
 
 # read 2019 chicago crime data
-cg_2019 = pd.read_pickle(r'C:\Users\Tauseef\Downloads\chicago_2019.pkl')
+cg_2019 = pickle.load(urllib.request.urlopen("https://github.com/tauseef1234/Data-Visualization/blob/master/data/chicago_2019.pkl?raw=true"))
 cg_2019['community_area'] = cg_2019['community_area'].astype('int').astype('str')
 
 # aggregated crime data by community and primary type
