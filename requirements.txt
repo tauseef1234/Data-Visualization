@@ -1,7 +1,7 @@
 pandas
 numpy
 geopandas
-urllib
+urllib.request
 re
 json
 requests
