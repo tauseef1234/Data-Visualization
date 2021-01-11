@@ -1,7 +1,6 @@
 pandas
 numpy
 geopandas
-re
 json
 requests
 pickle
