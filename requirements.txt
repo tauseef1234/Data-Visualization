@@ -4,3 +4,4 @@ geopandas
 bokeh
 tornado
 requests==2.18.4
+google
