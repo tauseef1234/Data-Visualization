@@ -5,7 +5,7 @@ import numpy as np
 import geopandas
 import urllib.request
 import re, json, requests, pickle
-from google.cloud import bigquery
+# from google.cloud import bigquery
 
 from bokeh.io import output_notebook, show, output_file
 from bokeh.plotting import figure
