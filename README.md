@@ -1,8 +1,8 @@
 <center><h1><font color = '#EC9C45'> Chicago crime data - Interactive Dashboard </font></h1></center>
 
-This interactive dashboard maps the city of Chicago by offence count for the year 2019. The dashboard shows a choropleth map of the city of Chicago that hads counties color coded by the offence count, a datatable and a horizontal bar chart of the offence types.
+The two interactive dashboards help derive key insights in criminal offences committed in the city of Chicago for the year 2019. The dashboard shows a choropleth map of the city of Chicago that hads counties color coded by the offence count, a datatable and a horizontal bar chart of the offence types.
 
-[Dashboard Link](https://testchicago.herokuapp.com/)
+
 
 
 ## Input Data
@@ -26,9 +26,11 @@ The pickle file `chicago_crime.pkl` is generated from the df dataframe using the
 
 The `Boundaries.geojson` (mapping data) json file is extracted from the [Chicago city website](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9)
 
-## Dashboard
+## Dashboard 1
 
-The dashboard has three key components
+[Dashboard Link](https://testchicago.herokuapp.com/)
+
+This dashboard (chicago3.py) has three key components:
 
 1. Choropleth map - A geomap in which county areas are color coded by the count of offence in the city of Chicago for the year 2019.
 2. Datatable - A datatable view of the count by offence type
@@ -37,3 +39,8 @@ The dashboard has three key components
 ## How the dashboard works
 
 When clicked on a county on the geomap, the datatable and horizontal bar chart get refreshed with the offence count by that county. When clicked on an offence type on datatable, the geomap gets resfreshed with the offence count by the offence type clicked on the data table. The dashboard is developed using Python interactive data visualization library __bokeh__.
+
+
+## Dashboard 2
+
+The second dashobard (chicago_2019.py)
