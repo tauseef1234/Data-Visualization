@@ -38,9 +38,10 @@ cg = geopandas.read_file('https://raw.githubusercontent.com/tauseef1234/Data-Vis
 # Merge geojson map file with community level aggregated crime data
 merged_df = cg.merge(agg_data, how = 'left', right_on='community_area', left_on='area_num_1')
 
-# Bokeh uses geojson formatting, representing geographical features, with json
+# Bokeh uses geojson formatting which represents geographical features with json
 # Convert to json
 merged_json = json.loads(merged_df.to_json())
+# Convert to String like object
 json_data = json.dumps(merged_json)
 
 # Create a plotting function
@@ -196,7 +197,7 @@ def function_geosource(attr, old, new):
 
 
 
-# Input geojson source that contains features for plotting for:
+# Input geojson source that contains features for plotting for. GeoJSON describes points, lines and polygons (called Patches in Bokeh) as a collection of features
 geosource = GeoJSONDataSource(geojson = json_data)
 
 df2 = pd.DataFrame(cg_2019.groupby(['community_area','primary_type'])['case_number']\
