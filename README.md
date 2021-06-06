@@ -28,7 +28,7 @@ The `Boundaries.geojson` (mapping data) json file is extracted from the [Chicago
 
 ## Dashboard 1
 
-[Dashboard Link](https://testchicago.herokuapp.com/)
+[Dashboard1 Link](https://testchicago.herokuapp.com/)
 
 This dashboard (chicago3.py) has three key components:
 
@@ -43,6 +43,7 @@ When clicked on a county on the geomap, the datatable and horizontal bar chart g
 
 ## Dashboard 2
 
+[Dashboard2 Link](https://chicago-offense.herokuapp.com/chicago_2019)
 The second dashobard (chicago_2019.py) deep dives into the distribution of offences by month and offence type. The key components of this dashboard are:
 
 1. Choropleth map - A geomap in which county areas are color coded by the count of offence in the city of Chicago for the year 2019.
