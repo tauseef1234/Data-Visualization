@@ -115,7 +115,7 @@ def make_table(table_df):
                     color: black"> 
                     <%= Math.round(value*100) + ' %' %></div>
                 """
-                    template1="""
+    template1="""
                 <div style="
                     font-size: 12px;
                     color: black"> 
