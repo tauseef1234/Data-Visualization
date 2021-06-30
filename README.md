@@ -9,7 +9,7 @@ The two interactive dashboards developed using open source visualization library
 
 The source data for this dashboard is extracted from [Google cloud public dataset](https://console.cloud.google.com/marketplace/product/city-of-chicago-public-data/chicago-crime?filter=solution-type:dataset&id=a985ccaf-0a3a-4eb9-a2de-c4fd07de08f0&project=cbasdo&folder=&organizationId=)
 
-Data Extraction - Python library bigquery was used to extract data from Google cloud. The steps to create Google API credentials can be figured out using this [webpage](https://console.cloud.google.com/apis/credentials). The following code snippet was run to fetch the data.
+Data Extraction - Python library bigquery was used to extract data from Google cloud. The steps to create Google API credentials can be figured out using Google authentication [webpage](https://cloud.google.com/docs/authentication/getting-started). The following code snippet was run to fetch the data.
 
 ```python
 pip install --upgrade google-cloud-bigquery        # Install library
