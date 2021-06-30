@@ -1,6 +1,6 @@
 <center><h1><font color = '#EC9C45'> Chicago crime data - Interactive Dashboard </font></h1></center>
 
-The two interactive dashboards help derive key insights in criminal offences committed in the city of Chicago for the year 2019. The dashboard shows a choropleth map of the city of Chicago that hads counties color coded by the offence count, a datatable and a horizontal bar chart of the offence types.
+The two interactive dashboards developed using open source visualization library **BOKEH** are aimed to derive key insights in criminal offences committed in the city of Chicago for the year 2019. The dashboard shows a choropleth map of the city of Chicago that hads counties color coded by the offence count, a datatable and a horizontal bar chart of the offence types.
 
 
 
