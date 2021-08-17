@@ -50,3 +50,9 @@ The second dashobard (chicago_2019.py) deep dives into the distribution of offen
 1. Choropleth map - A geomap in which county areas are color coded by the count of offence in the city of Chicago for the year 2019.
 2. Datatable - A datatable view of the percentage of offence by day of the week and time of the day
 3. Bar chart - A horizontal bar chart is used to display the count by offence type and month
+
+
+References:
+
+1. [Bokeh documentation](https://docs.bokeh.org/en/latest/index.html) is the best place to get started with the library - great resource
+2. This great [blog](https://jimking100.github.io/2019-09-04-Post-3/) from Jim King on creating an interactive geographic map using bokeh
