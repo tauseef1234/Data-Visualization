@@ -34,7 +34,7 @@ This dashboard (chicago3.py) has three key components:
 
 1. Choropleth map - A geomap in which county areas are color coded by the count of offence in the city of Chicago for the year 2019.
 2. Datatable - A datatable view of the count by offence type
-3. Bar chart - A horizontal bar chart is used to display the count by offenct type
+3. Bar chart - A horizontal bar chart is used to display the count by offence type
 
 ## How the dashboard works
 
